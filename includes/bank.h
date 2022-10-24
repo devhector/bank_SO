@@ -13,6 +13,7 @@ typedef struct bank_s {
 typedef struct person_s {
 	int			id;
 	int			loan_cost;
+	int			loan_rate;
 	int			entry_value;
 	bank_t		*bank;
 	pthread_t	thread;
@@ -24,3 +25,4 @@ typedef struct stack_s {
 } stack_t;
 
 void	add_queue(stack_t **queue, person_t person);
+int		bank_simulation(int cash, int subsidy, int interest_rate, int persons);

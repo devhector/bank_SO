@@ -24,9 +24,9 @@ int	main(void)
 	get_value(&cash);
 	printf("Entre com o valor do subsídio: \n");
 	get_value(&subsidy);
-	printf("Entre com o valor da taxa de juros: \n");
+	printf("Entre com o saldo das taxas de juros: \n");
 	get_value(&interest_rate);
 	printf("Entre com o número de pessoas: \n");
-	get_value(&persons);
+	scanf("%d", &persons);
 	return (bank_simulation(cash, subsidy, interest_rate, persons));
 }
