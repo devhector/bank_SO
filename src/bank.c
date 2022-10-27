@@ -1,27 +1,40 @@
 #include "bank.h"
 
-int	get_group(int persons)
+void	*banker(void *arg)
 {
-	int	group;
+	person_t	*person;
 
-	group = persons / 3;
-	if (persons % 3 != 0)
-		group++;
-	return (group);
+	person = (person_t *)arg;
+	printf("Banker thread [%d] started\n", person->id);
+	return (NULL);
 }
 
 int	create_simu(person_t *person)
 {
 	int		i;
-	int		group;
+	int		aux;
+	int		count;
+	int		p_aux;
+	int		persons;
 	bank_t	*bank;
 
+	aux = -1;
 	bank = person[0].bank;
-	group = get_group(bank->persons);
-	
+	p_aux = bank->persons;
+	persons = bank->persons;
 	while (get_status(bank))
 	{
-
+		count = persons - (3 * ((p_aux - 1) / 3));
+		i = aux;
+		while (++i < count)
+			pthread_create(&person[i].thread, NULL, &banker, &person[i]);
+		i = aux;
+		while (++i < count)
+			pthread_join(person[i].thread, NULL);
+		aux = count - 1;
+		p_aux = persons - count;
+		if (persons <= 0)
+			break ;
 	}
 }
 
@@ -44,6 +57,7 @@ int	start(bank_t *bank, int persons)
 		person[i].entry_value = (person[i].loan_cost * 0.4) + (rand() % (int)(person[i].loan_cost * 0.4));
 		person[i].bank = bank;
 	}
+	bank->person = person;
 	i = -1;
 	while (++i < persons)
 	{
@@ -53,7 +67,7 @@ int	start(bank_t *bank, int persons)
 		printf("Taxa do emprestimo: %d\n", person[i].loan_rate);
 		printf("Valor de entrada: %d\n", person[i].entry_value);
 	}
-	return (0);
+	return (create_simu(bank->person));
 }
 
 int	bank_simulation(int cash, int subsidy, int interest_rate, int persons)
