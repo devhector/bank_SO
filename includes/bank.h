@@ -5,13 +5,14 @@
 #include <stdbool.h>
 
 typedef struct bank_s {
-	int				cash;
-	int				subsidy;
-	int				persons;
-	int				interest_rate;
-	bool			sim_ok;
+	int		cash;
+	int		subsidy;
+	int		persons;
+	int		interest_rate;
+	bool	sim_ok;
 	pthread_mutex_t	status;
 	pthread_mutex_t	lock_account;
+	struct person_s	*person;
 } bank_t;
 
 typedef struct person_s {
