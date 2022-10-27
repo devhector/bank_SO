@@ -17,6 +17,7 @@ int	main(void)
 	int	persons = 0;
 	int	interest_rate = 0;
 
+	srand(time(NULL));
 	printf("Entre com o valor em espécie: \n");
 	get_value(&cash);
 	printf("Entre com o valor do subsídio: \n");
