@@ -30,6 +30,5 @@ typedef struct stack_s {
 } stack_t;
 
 int		get_status(bank_t *bank);
-
 void	add_queue(stack_t **queue, person_t person);
 int		bank_simulation(int cash, int subsidy, int interest_rate, int persons);

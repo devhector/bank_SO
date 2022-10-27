@@ -9,7 +9,7 @@ vpath %.h $(INCLUDE_PATH)
 
 vpath %.c src
 
-SRC = main.c bank.c queue.c
+SRC = main.c bank.c queue.c utils.c
 
 RM = @rm -rf
 
