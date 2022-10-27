@@ -36,6 +36,7 @@ int	create_simu(person_t *person)
 		if (persons <= 0)
 			break ;
 	}
+	return (0);
 }
 
 int	start(bank_t *bank, int persons)
