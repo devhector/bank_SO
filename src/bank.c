@@ -2,10 +2,14 @@
 
 void	*banker(void *arg)
 {
+	int		time;
 	person_t	*person;
 
+	time = rand() % 5 + 1;
 	person = (person_t *)arg;
 	printf("Banker thread [%d] started\n", person->id);
+	printf("Banker thread [%d] sleeping for %d seconds\n", person->id, time);
+	sleep(time);
 	return (NULL);
 }
 
@@ -33,7 +37,7 @@ int	create_simu(person_t *person)
 			pthread_join(person[i].thread, NULL);
 		aux = count - 1;
 		p_aux = persons - count;
-		if (persons <= 0)
+		if (p_aux <= 0)
 			break ;
 	}
 	return (0);
